@@ -1,4 +1,4 @@
-const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) {
+var capacitorSecureStorage = (function (exports, core) {
   'use strict';
 
   /**
@@ -8,7 +8,7 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
    * @modified 5.0.0
    */
   exports.StorageErrorType = void 0;
-  (function  capacitorSecureStorage(StorageErrorType) {
+  (function (StorageErrorType) {
       /**
        * The key is null or empty.
        */
@@ -34,7 +34,7 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
    * https://developer.apple.com/documentation/security/keychain_services/keychain_items/item_attribute_keys_and_values#1679100
    */
   exports.KeychainAccess = void 0;
-  (function  capacitorSecureStorage(KeychainAccess) {
+  (function (KeychainAccess) {
       /**
         The data in the keychain item can be accessed only while the device is
         unlocked by the user.
@@ -108,15 +108,15 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
 
   const proxy = core.registerPlugin('SecureStorage', {
       web: async () => {
-          const module = await Promise.resolve().then(function  module() { return web; });
+          const module = await Promise.resolve().then(function () { return web; });
           return new module.SecureStorageWeb();
       },
       ios: async () => {
-          const module = await Promise.resolve().then(function  module() { return native; });
+          const module = await Promise.resolve().then(function () { return native; });
           return new module.SecureStorageNative(proxy);
       },
       android: async () => {
-          const module = await Promise.resolve().then(function  module() { return native; });
+          const module = await Promise.resolve().then(function () { return native; });
           return new module.SecureStorageNative(proxy);
       },
   });
@@ -179,7 +179,7 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                   return JSON.parse(data);
               }
-              catch {
+              catch (_a) {
                   throw new StorageError('Invalid data', exports.StorageErrorType.invalidData);
               }
           }
@@ -332,7 +332,7 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
       }
   }
 
-  const web = /*#__PURE__*/Object.freeze({
+  var web = /*#__PURE__*/Object.freeze({
     __proto__: null,
     SecureStorageWeb: SecureStorageWeb
   });
@@ -388,7 +388,7 @@ const capacitorSecureStorage = (function  capacitorSecureStorage(exports, core) 
   }
   /* eslint-enable @typescript-eslint/require-await */
 
-  const native = /*#__PURE__*/Object.freeze({
+  var native = /*#__PURE__*/Object.freeze({
     __proto__: null,
     SecureStorageNative: SecureStorageNative
   });

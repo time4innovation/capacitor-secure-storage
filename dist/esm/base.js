@@ -58,7 +58,7 @@ export class SecureStorageBase extends WebPlugin {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                 return JSON.parse(data);
             }
-            catch {
+            catch (_a) {
                 throw new StorageError('Invalid data', StorageErrorType.invalidData);
             }
         }

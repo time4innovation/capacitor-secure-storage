@@ -1,6 +1,6 @@
 'use strict';
 
-const core = require('@capacitor/core');
+var core = require('@capacitor/core');
 
 /**
  * When one of the storage functions throws, the thrown StorageError
@@ -109,15 +109,15 @@ class StorageError extends Error {
 
 const proxy = core.registerPlugin('SecureStorage', {
     web: async () => {
-        const module = await Promise.resolve().then(function  module() { return web; });
+        const module = await Promise.resolve().then(function () { return web; });
         return new module.SecureStorageWeb();
     },
     ios: async () => {
-        const module = await Promise.resolve().then(function  module() { return native; });
+        const module = await Promise.resolve().then(function () { return native; });
         return new module.SecureStorageNative(proxy);
     },
     android: async () => {
-        const module = await Promise.resolve().then(function  module() { return native; });
+        const module = await Promise.resolve().then(function () { return native; });
         return new module.SecureStorageNative(proxy);
     },
 });
@@ -180,7 +180,7 @@ class SecureStorageBase extends core.WebPlugin {
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
                 return JSON.parse(data);
             }
-            catch {
+            catch (_a) {
                 throw new StorageError('Invalid data', exports.StorageErrorType.invalidData);
             }
         }
@@ -333,7 +333,7 @@ class SecureStorageWeb extends SecureStorageBase {
     }
 }
 
-const web = /*#__PURE__*/Object.freeze({
+var web = /*#__PURE__*/Object.freeze({
   __proto__: null,
   SecureStorageWeb: SecureStorageWeb
 });
@@ -389,7 +389,7 @@ class SecureStorageNative extends SecureStorageBase {
 }
 /* eslint-enable @typescript-eslint/require-await */
 
-const native = /*#__PURE__*/Object.freeze({
+var native = /*#__PURE__*/Object.freeze({
   __proto__: null,
   SecureStorageNative: SecureStorageNative
 });
