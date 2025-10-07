@@ -1,88 +1,28 @@
 {
-  "name": "@aparajita/capacitor-secure-storage",
-  "version": "7.1.3",
-  "description": "Capacitor 7+ plugin that provides secure storage for the iOS and Android",
   "author": "Aparajita Fishman",
-  "license": "MIT",
-  "type": "module",
-  "main": "dist/plugin.cjs.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/plugin.cjs.js"
+  "bugs": {
+    "url": "https://github.com/aparajita/capacitor-secure-storage/issues"
+  },
+  "capacitor": {
+    "android": {
+      "src": "android"
+    },
+    "ios": {
+      "src": "ios"
     }
-  },
-  "unpkg": "dist/plugin.js",
-  "engines": {
-    "node": ">=16.15.1"
-  },
-  "files": [
-    "android/src/main/",
-    "android/build.gradle",
-    "dist/",
-    "ios/Plugin/",
-    "*.podspec",
-    "LICENSE"
-  ],
-  "scripts": {
-    "clean": "rimraf dist",
-    "format": "prettier --write --cache --log-level error \"**/*.{js,cjs,mjs,ts,vue,md,json,css}\"",
-    "lint.oxlint": "oxlint --config=oxlint.config.jsonc --deny-warnings --fix",
-    "lint.eslint": "eslint --cache --fix \"**/*.{js,cjs,mjs,ts,vue}\"",
-    "lint.tsc": "vue-tsc --noEmit --skipLibCheck",
-    "lint.swift": "swiftly ios/Plugin/**/*.swift && swiftly demo/ios/App/App/**/*.swift",
-    "lint": "pnpm format && pnpm lint.oxlint && pnpm lint.eslint && pnpm lint.tsc && pnpm lint.swift",
-    "prebuilder": "pnpm clean",
-    "builder": "vue-tsc ${SOURCE_MAP:-} && rollup -c rollup.config.mjs",
-    "prebuild": "pnpm lint",
-    "build": "pnpm builder",
-    "build.dev": "SOURCE_MAP=--sourceMap pnpm build",
-    "watch": "nodemon --exec 'pnpm build.dev'",
-    "open.ios": "open ios/Plugin.xcworkspace",
-    "open.android": "open -b com.google.android.studio android",
-    "demo.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo dev",
-    "demo.build": "pnpm --filter @aparajita/capacitor-secure-storage-demo build",
-    "demo.ios": "pnpm build && pnpm --filter @aparajita/capacitor-secure-storage-demo ios",
-    "demo.ios.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo ios.dev",
-    "demo.android": "pnpm build && pnpm --filter @aparajita/capacitor-secure-storage-demo android",
-    "demo.android.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo android.dev",
-    "prerelease": "pnpm build",
-    "tag": "commit-and-tag-version --bumpFiles package.json --bumpFiles demo/package.json",
-    "tag.preview": "pnpm tag --dry-run",
-    "release": "./scripts/release.sh"
   },
   "commit-and-tag-version": {
     "scripts": {
       "postbump": "pnpm builder"
     }
   },
-  "keywords": [
-    "capacitor",
-    "plugin",
-    "native",
-    "storage",
-    "encryption"
-  ],
-  "capacitor": {
-    "ios": {
-      "src": "ios"
-    },
-    "android": {
-      "src": "android"
-    }
+  "dependencies": {
+    "@capacitor/android": "^7.4.2",
+    "@capacitor/app": "^7.0.1",
+    "@capacitor/core": "^7.4.2",
+    "@capacitor/ios": "^7.4.2"
   },
-  "swiftlint": "@ionic/swiftlint-config",
-  "prettier": "@aparajita/prettier-config",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aparajita/capacitor-secure-storage.git"
-  },
-  "bugs": {
-    "url": "https://github.com/aparajita/capacitor-secure-storage/issues"
-  },
+  "description": "Capacitor 7+ plugin that provides secure storage for the iOS and Android",
   "devDependencies": {
     "@aparajita/prettier-config": "^2.0.0",
     "@aparajita/swiftly": "^2.0.0",
@@ -112,12 +52,35 @@
     "typescript": "~5.8.3",
     "vue-tsc": "~3.0.4"
   },
-  "dependencies": {
-    "@capacitor/android": "^7.4.2",
-    "@capacitor/app": "^7.0.1",
-    "@capacitor/core": "^7.4.2",
-    "@capacitor/ios": "^7.4.2"
+  "engines": {
+    "node": ">=16.15.1"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/plugin.cjs.js",
+      "types": "./dist/esm/index.d.ts"
+    }
+  },
+  "files": [
+    "android/src/main/",
+    "android/build.gradle",
+    "dist/",
+    "ios/Plugin/",
+    "*.podspec",
+    "LICENSE"
+  ],
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native",
+    "storage",
+    "encryption"
+  ],
+  "license": "MIT",
+  "main": "dist/plugin.cjs.js",
+  "module": "dist/esm/index.js",
+  "name": "@aparajita/capacitor-secure-storage",
   "pnpm": {
     "allowDeprecatedVersions": {
       "stringify-package": "1.0.1"
@@ -128,5 +91,42 @@
       "swiftlint",
       "unrs-resolver"
     ]
-  }
+  },
+  "prettier": "@aparajita/prettier-config",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aparajita/capacitor-secure-storage.git"
+  },
+  "scripts": {
+    "build": "pnpm builder",
+    "build.dev": "SOURCE_MAP=--sourceMap pnpm build",
+    "builder": "vue-tsc ${SOURCE_MAP:-} && rollup -c rollup.config.mjs",
+    "clean": "rimraf dist",
+    "demo.android": "pnpm build && pnpm --filter @aparajita/capacitor-secure-storage-demo android",
+    "demo.android.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo android.dev",
+    "demo.build": "pnpm --filter @aparajita/capacitor-secure-storage-demo build",
+    "demo.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo dev",
+    "demo.ios": "pnpm build && pnpm --filter @aparajita/capacitor-secure-storage-demo ios",
+    "demo.ios.dev": "pnpm --filter @aparajita/capacitor-secure-storage-demo ios.dev",
+    "format": "prettier --write --cache --log-level error \"**/*.{js,cjs,mjs,ts,vue,md,json,css}\"",
+    "lint": "pnpm format && pnpm lint.oxlint && pnpm lint.eslint && pnpm lint.tsc && pnpm lint.swift",
+    "lint.eslint": "eslint --cache --fix \"**/*.{js,cjs,mjs,ts,vue}\"",
+    "lint.oxlint": "oxlint --config=oxlint.config.jsonc --deny-warnings --fix",
+    "lint.swift": "swiftly ios/Plugin/**/*.swift && swiftly demo/ios/App/App/**/*.swift",
+    "lint.tsc": "vue-tsc --noEmit --skipLibCheck",
+    "open.android": "open -b com.google.android.studio android",
+    "open.ios": "open ios/Plugin.xcworkspace",
+    "prebuild": "pnpm lint",
+    "prebuilder": "pnpm clean",
+    "prerelease": "pnpm build",
+    "release": "./scripts/release.sh",
+    "tag": "commit-and-tag-version --bumpFiles package.json --bumpFiles demo/package.json",
+    "tag.preview": "pnpm tag --dry-run",
+    "watch": "nodemon --exec 'pnpm build.dev'"
+  },
+  "swiftlint": "@ionic/swiftlint-config",
+  "type": "module",
+  "types": "dist/esm/index.d.ts",
+  "unpkg": "dist/plugin.js",
+  "version": "7.1.4"
 }
